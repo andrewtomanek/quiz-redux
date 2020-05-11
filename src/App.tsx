@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router'
 import GlobalStyle from "./theme/globalStyle";
-import Assessment from './pages/Assessment';
+import Home from './pages/Home';
 import Header from './components/Header';
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
         <GlobalStyle />
         <Header />
         <Switch>
-        <Route path="/" exact component={Assessment} />
+        <Route path="/" exact component={Home} />
         </Switch>
 
       </div>

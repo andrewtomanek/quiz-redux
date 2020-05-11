@@ -15,6 +15,7 @@ const questionContainer = (props) => {
         key={currentQuestion.id}
         questionData={currentQuestion}
         setResultAnswer={props.setResultAnswer}
+        enableNext={props.enableNext}
       />
     )
   );

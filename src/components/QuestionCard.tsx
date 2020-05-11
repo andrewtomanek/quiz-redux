@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import Form from "./Form";
 
-const QuestionCard = ({ questionData, setResultAnswer }) => {
+type Props = {
+  questionData: any;
+  setResultAnswer: (data) => void;
+  enableNext: () => void;
+};
+
+const QuestionCard = ({ questionData, setResultAnswer, enableNext }: Props) => {
   const [answerQuery, setAnswerQuery] = useState("");
 
   const handleChange = (event) => {
@@ -26,8 +32,11 @@ const QuestionCard = ({ questionData, setResultAnswer }) => {
         </label>
         <button>Submit</button>
       </form>
-      <Form   questionData={questionData}
-        setResultAnswer={setResultAnswer}/>
+      <Form
+        questionData={questionData}
+        setResultAnswer={setResultAnswer}
+        enableNext={enableNext}
+      />
     </div>
   );
 };

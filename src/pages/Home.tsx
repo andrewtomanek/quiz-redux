@@ -1,35 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { State } from "../store/reducers/quizReducer";
-
 import * as actionCreators from "../store/actions/index";
 import QuestionContainer from "../components/QuestionContainer";
 import Button from "../components/Button";
-import Score from "../components/Score";
-
-const assessment = [
-  {
-    question: "Who?",
-    answer: "first 1",
-    id: 0,
-  },
-  {
-    question: "What?",
-    answer: "second 2",
-    id: 1,
-  },
-  {
-    question: "When?",
-    answer: "third 3",
-    id: 2,
-  },
-  {
-    question: "Where?",
-    answer: "fourth 4",
-    id: 3,
-  },
-];
+import ResultBoard from "../components/ResultBoard";
+import formData from "../data/formData";
 
 interface StateProps {
   answersInfo: {};
@@ -40,11 +17,19 @@ interface StateProps {
 interface DispatchProps {
   onNextQuestion: () => void;
   onPrevQuestion: () => void;
+  resetIndex: () => void;
+  resetResults: () => void;
   setResultAnswer: (data) => void;
 }
 
-const Assessment = (props: StateProps & DispatchProps) => {
+const Home = (props: StateProps & DispatchProps) => {
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
+  console.log(props.currentIndex);
+
+  useEffect(() => {
+    setIsDisabled(true);
+  }, [props.currentIndex]);
 
   const onPrevButtonHandler = () => {
     props.onPrevQuestion();
@@ -62,23 +47,40 @@ const Assessment = (props: StateProps & DispatchProps) => {
     props.setResultAnswer(data);
   };
 
-  const getScore = () => {
-    let score;
-    score = props.answersInfo;
-    return score;
+  const resetData = () => {
+    props.resetResults();
+    props.resetIndex();
+    setIsSubmit(false);
   };
 
-  let nextButton = <Button clicked={onNextButtonHandler}>NEXT</Button>;
+  const enableNext = () => {
+    setIsDisabled(!isDisabled);
+  };
+
+  let nextButton;
   if (props.currentIndex === 3) {
-    nextButton = <Button clicked={onSubmitQuizHandler}>SUBMIT</Button>;
+    nextButton = (
+      <Button disabled={isDisabled} clicked={onSubmitQuizHandler}>
+        Submit answers
+      </Button>
+    );
+  } else if (props.currentIndex === -1) {
+    nextButton = <Button clicked={onNextButtonHandler}>Start</Button>;
+  } else {
+    nextButton = (
+      <Button disabled={isDisabled} clicked={onNextButtonHandler}>
+        Next question
+      </Button>
+    );
   }
 
   let assessmentObj = (
     <div>
       <QuestionContainer
-        assessment={assessment}
+        assessment={formData}
         answersInfo={props.answersInfo}
         setResultAnswer={setResultAnswer}
+        enableNext={enableNext}
         questionIndex={props.currentIndex}
       />
       <div>
@@ -93,8 +95,9 @@ const Assessment = (props: StateProps & DispatchProps) => {
   );
 
   if (isSubmit) {
-    const score = getScore();
-    assessmentObj = <Score score={score} />;
+    assessmentObj = (
+      <ResultBoard resetData={resetData} resultData={props.answersInfo} />
+    );
   }
 
   return <div>{assessmentObj}</div>;
@@ -111,8 +114,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     onNextQuestion: () => dispatch(actionCreators.nextQuestion()),
     onPrevQuestion: () => dispatch(actionCreators.prevQuestion()),
+    resetIndex: () => dispatch(actionCreators.resetIndex()),
+    resetResults: () => dispatch(actionCreators.resetResults()),
     setResultAnswer: (data) => dispatch(actionCreators.setAnswer(data)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Assessment);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

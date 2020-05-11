@@ -5,10 +5,11 @@ import * as Yup from "yup";
 
 type Props = {
   questionData: any;
-  setResultAnswer?: (data) => void;
+  setResultAnswer: (data) => void;
+  enableNext: () => void;
 };
 
-const Form = ({ questionData, setResultAnswer }: Props) => {
+const Form = ({ questionData, setResultAnswer, enableNext }: Props) => {
   return (
     <Formik
       initialValues={{ questionQuery: "" }}
@@ -20,6 +21,7 @@ const Form = ({ questionData, setResultAnswer }: Props) => {
           questionId: questionData.id,
           answer: values.questionQuery,
         };
+        enableNext();
         setResultAnswer(data);
       }}
       validationSchema={Yup.object().shape({
@@ -41,11 +43,11 @@ const Form = ({ questionData, setResultAnswer }: Props) => {
         return (
           <form onSubmit={handleSubmit}>
             <label htmlFor="questionQuery" style={{ display: "block" }}>
-              Email
+             {questionData.question}
             </label>
             <input
               id="questionQuery"
-              placeholder="Enter your questionQuery"
+              placeholder={questionData.answer}
               type="text"
               value={values.questionQuery}
               onChange={handleChange}
