@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Form from "./Form";
 
 const QuestionCard = ({ questionData, setResultAnswer }) => {
   const [answerQuery, setAnswerQuery] = useState("");
@@ -25,6 +26,8 @@ const QuestionCard = ({ questionData, setResultAnswer }) => {
         </label>
         <button>Submit</button>
       </form>
+      <Form   questionData={questionData}
+        setResultAnswer={setResultAnswer}/>
     </div>
   );
 };

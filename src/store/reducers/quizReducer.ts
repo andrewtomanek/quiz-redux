@@ -2,12 +2,12 @@ import * as actionTypes from '../actions/actionTypes';
 
 export interface State {
     answersInfo:{};
-    selectedQuestion:number;
+    currentQuestion:number;
 }
 
 const initialState: State = {   
     answersInfo: {},
-    selectedQuestion: -1,
+    currentQuestion: -1,
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,16 +21,14 @@ const reducer = (state = initialState, action) => {
                 } 
             }
             case actionTypes.NEXT_QUESTION:
-                console.log(state.selectedQuestion)
                 return {
                     ...state,
-                    selectedQuestion: state.selectedQuestion + 1
+                    currentQuestion: state.currentQuestion + 1
                 }
             case actionTypes.PREV_QUESTION:
-                console.log(state.selectedQuestion)
                 return {
                     ...state,
-                    selectedQuestion: state.selectedQuestion - 1
+                    currentQuestion: state.currentQuestion - 1
                 }
         default: 
             return state;

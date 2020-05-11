@@ -1,5 +1,6 @@
 import React from "react";
-import QuestionCard from "./QuestionCard";
+import Form from "./Form";
+
 
 const questionContainer = (props) => {
   let currentQuestion = null;
@@ -10,7 +11,7 @@ const questionContainer = (props) => {
   }
   return (
     currentQuestion && (
-      <QuestionCard
+      <Form
         key={currentQuestion.id}
         questionData={currentQuestion}
         setResultAnswer={props.setResultAnswer}

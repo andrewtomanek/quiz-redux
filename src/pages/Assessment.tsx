@@ -102,7 +102,7 @@ const Assessment = (props: StateProps & DispatchProps) => {
 
 const mapStateToProps = (state: State) => {
   return {
-    currentIndex: state.selectedQuestion,
+    currentIndex: state.currentQuestion,
     answersInfo: state.answersInfo,
   };
 };
