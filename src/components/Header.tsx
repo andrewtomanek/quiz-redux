@@ -4,7 +4,7 @@ const Header = (props) => {
     
     return(
         <div >
-           <span>Assessment</span>
+           <span>Build a sentence game</span>
         </div>
     );
 

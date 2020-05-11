@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router'
 
-import Assessment from './containers/Assessment/Assessment';
+import Assessment from './pages/Assessment';
 import Header from './components/Header';
 
 class App extends Component {

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 const QuestionCard = ({ questionData, setResultAnswer }) => {
-  // console.log(props.assessment[props.questionIndex]);
-
   const [answerQuery, setAnswerQuery] = useState("");
 
   const handleChange = (event) => {

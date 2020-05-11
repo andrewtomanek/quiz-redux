@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { State } from "../../store/reducers/quizReducer";
+import { State } from "../store/reducers/quizReducer";
 
-import * as actionCreators from "../../store/actions/index";
-import QuestionContainer from "../../components/QuestionContainer";
-import Button from "../../components/Button";
-import Score from "../../components/Score";
+import * as actionCreators from "../store/actions/index";
+import QuestionContainer from "../components/QuestionContainer";
+import Button from "../components/Button";
+import Score from "../components/Score";
 
 const assessment = [
   {
-      question: "Who?",
-      answer: "first 1",
-      id: 0
+    question: "Who?",
+    answer: "first 1",
+    id: 0,
   },
   {
-      question: "What?",
-      answer: "second 2",
-      id: 1
+    question: "What?",
+    answer: "second 2",
+    id: 1,
   },
   {
-      question: "When?",
-      answer: "third 3",
-      id: 2
+    question: "When?",
+    answer: "third 3",
+    id: 2,
   },
   {
-      question: "Where?",
-      answer: "fourth 4",
-      id: 3
+    question: "Where?",
+    answer: "fourth 4",
+    id: 3,
   },
 ];
 
@@ -46,11 +46,6 @@ interface DispatchProps {
 const Assessment = (props: StateProps & DispatchProps) => {
   const [isSubmit, setIsSubmit] = useState(false);
 
-  useEffect(() => {
-   console.log(props.currentIndex)
-   console.log(props.answersInfo)
-  }, []);
-
   const onPrevButtonHandler = () => {
     props.onPrevQuestion();
   };
@@ -62,21 +57,14 @@ const Assessment = (props: StateProps & DispatchProps) => {
   const onSubmitQuizHandler = () => {
     setIsSubmit(true);
   };
-  
-  
+
   const setResultAnswer = (data) => {
     props.setResultAnswer(data);
   };
 
   const getScore = () => {
-/*     let score = 0;
-    assessment.forEach((questionObj, index) => {
-      if (questionObj.answer === props.answersInfo[index]) {
-        score++;
-      }
-    }); */
     let score;
-    score= JSON.stringify(props.answersInfo)
+    score = props.answersInfo;
     return score;
   };
 

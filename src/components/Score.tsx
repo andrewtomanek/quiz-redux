@@ -1,10 +1,10 @@
 import React from 'react';
 
-const score = (props) => {
+const score = ({score}) => {
     
     return(
         <div >
-           <p>You have Answered <span>{ props.score }</span> out of 4 Questions Correctly</p>.
+           <p>{ score[0] } is { score[1] } on his { score[3] } { score[2] }</p>.
         </div>
     );
 }

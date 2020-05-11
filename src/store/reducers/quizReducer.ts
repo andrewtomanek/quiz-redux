@@ -11,8 +11,6 @@ const initialState: State = {
 };
 
 const reducer = (state = initialState, action) => {
-    console.log(action)
-    console.log(state.answersInfo)
     switch(action.type){
         case actionTypes.SET_ANSWER:
             return {
