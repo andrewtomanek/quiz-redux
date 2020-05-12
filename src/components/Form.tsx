@@ -2,6 +2,16 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import styled from "styled-components";
+import { ControlsLayout, InputForm, InputLabel } from "../styles/elements";
+
+const ErrorText = styled.p`
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--red);
+`;
 
 type Props = {
   questionData: any;
@@ -25,7 +35,12 @@ const Form = ({ questionData, setResultAnswer, enableNext }: Props) => {
         setResultAnswer(data);
       }}
       validationSchema={Yup.object().shape({
-        questionQuery: Yup.string().required("Required question"),
+        questionQuery: Yup.string()
+          .required("Alphanumeric characters required")
+          .matches(
+            /^[0-9a-zA-Z]+$/,
+            "Please input alphanumeric characters only"
+          ),
       })}
     >
       {(props) => {
@@ -41,10 +56,10 @@ const Form = ({ questionData, setResultAnswer, enableNext }: Props) => {
           handleReset,
         } = props;
         return (
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="questionQuery" style={{ display: "block" }}>
-             {questionData.question}
-            </label>
+          <InputForm onSubmit={handleSubmit}>
+            <InputLabel htmlFor="questionQuery">
+              {questionData.question}
+            </InputLabel>
             <input
               id="questionQuery"
               placeholder={questionData.answer}
@@ -59,22 +74,22 @@ const Form = ({ questionData, setResultAnswer, enableNext }: Props) => {
               }
             />
             {errors.questionQuery && touched.questionQuery && (
-              <div className="input-feedback">{errors.questionQuery}</div>
+              <ErrorText>{errors.questionQuery}</ErrorText>
             )}
-
-            <button
-              type="button"
-              className="outline"
-              onClick={handleReset}
-              disabled={!dirty || isSubmitting}
-            >
-              Reset
-            </button>
-            <button type="submit" disabled={isSubmitting}>
-              Submit
-            </button>
-            {JSON.stringify(props, null, 2)}
-          </form>
+            <ControlsLayout>
+              <button
+                type="button"
+                className="outline"
+                onClick={handleReset}
+                disabled={!dirty || isSubmitting}
+              >
+                Reset
+              </button>
+              <button type="submit" disabled={isSubmitting}>
+                Submit
+              </button>
+            </ControlsLayout>
+          </InputForm>
         );
       }}
     </Formik>

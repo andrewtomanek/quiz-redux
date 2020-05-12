@@ -1,29 +1,30 @@
 import * as actionTypes from "../actions/actionTypes";
 
 export interface State {
-  answersInfo: {};
+  answersData: {};
   currentQuestion: number;
 }
 
 const initialState: State = {
-  answersInfo: {},
+  answersData: {},
   currentQuestion: -1,
 };
 
 const reducer = (state = initialState, action) => {
+  console.log(state);
   switch (action.type) {
     case actionTypes.SET_ANSWER:
       return {
         ...state,
-        answersInfo: {
-          ...state.answersInfo,
+        answersData: {
+          ...state.answersData,
           [action.questionId]: action.answer,
         },
       };
     case actionTypes.RESET_RESULTS:
       return {
         ...state,
-        answersInfo: {},
+        answersData: {},
       };
 
     case actionTypes.RESET_INDEX:

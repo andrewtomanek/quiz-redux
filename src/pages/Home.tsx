@@ -3,13 +3,28 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { State } from "../store/reducers/quizReducer";
 import * as actionCreators from "../store/actions/index";
+import Header from '../components/Header';
 import QuestionContainer from "../components/QuestionContainer";
 import Button from "../components/Button";
 import ResultBoard from "../components/ResultBoard";
 import formData from "../data/formData";
+import styled from "styled-components";
+import { PageLayout, ControlsLayout } from "../styles/elements";
+
+
+const QuestionBox = styled.div`
+  display: grid;
+  grid-auto-flow: row;
+  align-content: center;
+  justify-content: center;
+  background-color: var(--yellow);
+  height: 100%;
+  width: 80vw;
+  border-radius: 1rem;
+`;
 
 interface StateProps {
-  answersInfo: {};
+  answersData: {};
   currentIndex: number;
   isSubmit: boolean;
 }
@@ -25,7 +40,6 @@ interface DispatchProps {
 const Home = (props: StateProps & DispatchProps) => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
-  console.log(props.currentIndex);
 
   useEffect(() => {
     setIsDisabled(true);
@@ -74,39 +88,36 @@ const Home = (props: StateProps & DispatchProps) => {
     );
   }
 
-  let assessmentObj = (
-    <div>
-      <QuestionContainer
-        assessment={formData}
-        answersInfo={props.answersInfo}
-        setResultAnswer={setResultAnswer}
-        enableNext={enableNext}
-        questionIndex={props.currentIndex}
-      />
-      <div>
-        <div>
-          {props.currentIndex > 0 ? (
-            <Button clicked={onPrevButtonHandler}>PREV</Button>
-          ) : null}
-        </div>
-        <div>{nextButton}</div>
-      </div>
-    </div>
+  return (
+    <PageLayout>
+              <Header />
+      {!isSubmit ? (
+        <QuestionBox>
+          <QuestionContainer
+            assessment={formData}
+            answersData={props.answersData}
+            setResultAnswer={setResultAnswer}
+            enableNext={enableNext}
+            questionIndex={props.currentIndex}
+          />
+          <ControlsLayout>
+              {props.currentIndex > 0 ? (
+                <Button clicked={onPrevButtonHandler}>PREV</Button>
+              ) : null}
+           {nextButton}
+          </ControlsLayout>
+        </QuestionBox>
+      ) : (
+        <ResultBoard resetData={resetData} resultData={props.answersData} />
+      )}
+    </PageLayout>
   );
-
-  if (isSubmit) {
-    assessmentObj = (
-      <ResultBoard resetData={resetData} resultData={props.answersInfo} />
-    );
-  }
-
-  return <div>{assessmentObj}</div>;
 };
 
 const mapStateToProps = (state: State) => {
   return {
     currentIndex: state.currentQuestion,
-    answersInfo: state.answersInfo,
+    answersData: state.answersData,
   };
 };
 

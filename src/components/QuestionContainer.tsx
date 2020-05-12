@@ -1,5 +1,14 @@
 import React from "react";
 import Form from "./Form";
+import styled from "styled-components";
+
+
+export const InputContainer = styled.div`
+  display: grid;
+  align-items: center;
+  padding: 0.4rem 0.3rem;
+  border-radius: 1rem;
+`;
 
 
 const questionContainer = (props) => {
@@ -11,12 +20,14 @@ const questionContainer = (props) => {
   }
   return (
     currentQuestion && (
+      <InputContainer>
       <Form
         key={currentQuestion.id}
         questionData={currentQuestion}
         setResultAnswer={props.setResultAnswer}
         enableNext={props.enableNext}
-      />
+        />
+        </InputContainer>
     )
   );
 };
