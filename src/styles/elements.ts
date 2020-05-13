@@ -35,7 +35,7 @@ export const PageLayout = styled.div`
 
 export const ControlsLayout = styled.div`
   display: grid;
-  grid-gap: 0.2rem 0.5rem;
+  grid-gap: 0.2rem 1.5rem;
   grid-auto-flow: column;
   justify-content: center;
   padding: 0.2rem 0.3rem;

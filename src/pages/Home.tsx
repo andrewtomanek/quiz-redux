@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { State, QuestionData,ResultData } from "../store/reducers/quizReducer";
+import { State, QuestionData, ResultData } from "../store/reducers/quizReducer";
 import {
   prevQuestion,
   nextQuestion,
@@ -102,7 +102,7 @@ const Home = (props: StateProps & DispatchProps) => {
   if (props.currentIndex === formData.length - 1) {
     nextButton = (
       <Button disabled={isDisabled} clicked={onSubmitQuizHandler}>
-        Submit answers
+        Display result
       </Button>
     );
   } else if (props.currentIndex === -1) {
@@ -120,17 +120,17 @@ const Home = (props: StateProps & DispatchProps) => {
       <Header />
       {!isSubmit ? (
         <QuestionBox>
- {    currentQuestion && (
-      <InputContainer>
-        <Form
-          key={currentQuestion.id}
-          questionData={currentQuestion}
-          setResultAnswer={setResultAnswer}
-          removeAnswer={removeAnswer}
-          enableNext={enableNext}
-        />
-      </InputContainer>
-    )}
+          {currentQuestion && (
+            <InputContainer>
+              <Form
+                key={currentQuestion.id}
+                questionData={currentQuestion}
+                setResultAnswer={setResultAnswer}
+                removeAnswer={removeAnswer}
+                enableNext={enableNext}
+              />
+            </InputContainer>
+          )}
           <ControlsLayout>
             {props.currentIndex > 0 ? (
               <Button clicked={onPrevButtonHandler}>Previous question</Button>

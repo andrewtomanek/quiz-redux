@@ -9,7 +9,7 @@
 			"dom",
 			"es2017"
 		],
-		"alwaysStrict": false,
+		"alwaysStrict": true,
 		"sourceMap": true,
 		"forceConsistentCasingInFileNames": true,
 		"noImplicitAny": true,

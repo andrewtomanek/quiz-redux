@@ -33,9 +33,9 @@ form{
 }
   
   input {
-    padding: 0.2rem;
+    padding: 0.4rem;
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
     width: 100%;
     border-radius: 1rem;
     border: 0.2rem solid #ccc;
@@ -57,8 +57,8 @@ form{
   button {
     margin: 0;
     padding: 1rem;
-    border-style: none;
     border-radius: 1rem;
+    border: 0.2rem solid #eee;
     background-color: var(--blue);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
     font-size: 1.2rem;
@@ -66,6 +66,13 @@ form{
     color: #fff;
     cursor: pointer;
     outline: none;
+    transition: all 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  button:hover {
+    background-color:#eee;
+    border: 0.2rem solid var(--blue);
+    color: var(--blue);
   }
   
   button:disabled {
@@ -76,8 +83,14 @@ form{
  
   button.outline {
     background-color: #eee;
-    border: 1px solid #aaa;
+    border: 0.2rem solid #aaa;
     color: #555;
+  }
+  
+    button.outline:hover {
+    background-color:var(--red);
+    border: 0.2rem solid var(--red);
+    color: #eee;
   }
   
   `;
