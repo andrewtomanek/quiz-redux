@@ -1,15 +1,16 @@
 import * as actionTypes from "./actionTypes";
+import { QuestionData } from "../reducers/quizReducer";
 
-export const setAnswer = (payload) => {
+export const setAnswer = (data: QuestionData) => {
   return {
     type: actionTypes.SET_ANSWER,
-    ...payload,
+    ...data,
   };
 };
-export const removeAnswer = (id) => {
+export const removeAnswer = (id: number) => {
   return {
     type: actionTypes.DELETE_ANSWER,
-    payload:id,
+    payload: id,
   };
 };
 

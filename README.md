@@ -1,6 +1,6 @@
-# react-sagas-typescript
+# build-a-sentence-game
 
-Pefrorm basic CRUD operations with React SPA
+React interface that allows the user to build a sentence
 
 ## Table of contents
 
@@ -12,24 +12,21 @@ Pefrorm basic CRUD operations with React SPA
 
 ## General info
 
-Fetch notes from API<br /> Create new notes and upload them to server<br /> Edit existing note<br /> Display detail of picked note<br /> Select preferred language.
+Write answer to the input field<br /> Submit your answer<br /> Reset or delete your answer<br /> Display completed sentence<br /> 
 
 ## Technologies
 
 - [React.js](https://reactjs.org)
 - [Redux.js](https://redux.js.org)
 - [React-Router](https://reacttraining.com/react-router)
-- [Connected-React-Router](https://github.com/supasate/connected-react-router/blob/master/FAQ.md)
-- [Redux-saga](https://redux-saga.js.org)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Jest](https://jestjs.io/en)
 - [Enzyme](https://enzymejs.github.io/enzyme/)
-- [MATERIAL-UI](https://material-ui.com)
 - [styled-components](https://styled-components.com)
 
 ## Setup
 
-1. Create a folder to hold your installation: mkdir react-sagas-typescript
+1. Create a folder to hold your installation: mkdir build-a-sentence-game
 
 2. FTP/Copy the contents of the zip to your newly created folder
 
@@ -37,7 +34,7 @@ Fetch notes from API<br /> Create new notes and upload them to server<br /> Edit
 
 4. Start application: yarn start
 
-5. Visit http://localhost:9000/ in your browser
+5. Visit http://localhost:5000/ in your browser
    <br />
       
 ## Testing
@@ -48,7 +45,7 @@ Run yarn test or watch changes yarn watch
 
 andrewtomanek - andrewtomanek@gmail.com
 
-[https://github.com/andrewtomanek/react-sagas-typescript](https://github.com/andrewtomanek/react-sagas-typescript)
+[https://github.com/andrewtomanek/build-a-sentence-game](https://github.com/andrewtomanek/build-a-sentence-game)
 
 ## License
 

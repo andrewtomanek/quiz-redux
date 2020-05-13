@@ -2,8 +2,9 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import styled from "styled-components";
+import { QuestionData } from "../store/reducers/quizReducer";
 import { ControlsLayout, InputForm, InputLabel } from "../styles/elements";
+import styled from "styled-components";
 
 const ErrorText = styled.p`
   margin: 0;
@@ -15,8 +16,8 @@ const ErrorText = styled.p`
 
 type Props = {
   questionData: any;
-  setResultAnswer: (data) => void;
-  removeAnswer: (data) => void;
+  setResultAnswer: (data: QuestionData) => void;
+  removeAnswer: (id: number) => void;
   enableNext: () => void;
 };
 
@@ -34,10 +35,7 @@ const Form = ({
     <Formik
       initialValues={{ questionQuery: "" }}
       onSubmit={(values) => {
-        const data: {
-          questionId: any;
-          answer: string;
-        } = {
+        const data = {
           questionId: questionData.id,
           answer: values.questionQuery,
         };

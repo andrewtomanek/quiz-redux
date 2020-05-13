@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { State } from "../store/reducers/quizReducer";
+import { State, QuestionData,ResultData } from "../store/reducers/quizReducer";
 import {
   prevQuestion,
   nextQuestion,
@@ -10,8 +10,8 @@ import {
   resetIndex,
   setAnswer,
 } from "../store/actions/index";
+import Form from "../components/Form";
 import Header from "../components/Header";
-import QuestionContainer from "../components/QuestionContainer";
 import Button from "../components/Button";
 import ResultBoard from "../components/ResultBoard";
 import formData from "../data/formData";
@@ -29,8 +29,15 @@ const QuestionBox = styled.div`
   border-radius: 1rem;
 `;
 
+export const InputContainer = styled.div`
+  display: grid;
+  align-items: center;
+  padding: 0.4rem 0.3rem;
+  border-radius: 1rem;
+`;
+
 interface StateProps {
-  answersData: {};
+  answersData: ResultData;
   currentIndex: number;
   isSubmit: boolean;
 }
@@ -40,15 +47,13 @@ interface DispatchProps {
   onPrevQuestion: () => void;
   resetIndex: () => void;
   resetResults: () => void;
-  setResultAnswer: (data) => void;
-  resetAnswer: (id) => void;
+  setResultAnswer: (data: QuestionData) => void;
+  resetAnswer: (id: number) => void;
 }
 
 const Home = (props: StateProps & DispatchProps) => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
-
-  console.log(formData.length);
 
   useEffect(() => {
     setIsDisabled(true);
@@ -66,11 +71,11 @@ const Home = (props: StateProps & DispatchProps) => {
     setIsSubmit(true);
   };
 
-  const setResultAnswer = (data) => {
+  const setResultAnswer = (data: QuestionData) => {
     props.setResultAnswer(data);
   };
 
-  const removeAnswer = (id) => {
+  const removeAnswer = (id: number) => {
     props.resetAnswer(id);
     setIsSubmit(false);
     setIsDisabled(true);
@@ -86,8 +91,15 @@ const Home = (props: StateProps & DispatchProps) => {
     setIsDisabled(!isDisabled);
   };
 
+  let currentQuestion = null;
+  if (props.currentIndex !== -1) {
+    currentQuestion = formData.find((item) => {
+      return item.id === props.currentIndex;
+    });
+  }
+
   let nextButton;
-  if (props.currentIndex === formData.length-1) {
+  if (props.currentIndex === formData.length - 1) {
     nextButton = (
       <Button disabled={isDisabled} clicked={onSubmitQuizHandler}>
         Submit answers
@@ -108,14 +120,17 @@ const Home = (props: StateProps & DispatchProps) => {
       <Header />
       {!isSubmit ? (
         <QuestionBox>
-          <QuestionContainer
-            assessment={formData}
-            answersData={props.answersData}
-            setResultAnswer={setResultAnswer}
-            removeAnswer={removeAnswer}
-            enableNext={enableNext}
-            questionIndex={props.currentIndex}
-          />
+ {    currentQuestion && (
+      <InputContainer>
+        <Form
+          key={currentQuestion.id}
+          questionData={currentQuestion}
+          setResultAnswer={setResultAnswer}
+          removeAnswer={removeAnswer}
+          enableNext={enableNext}
+        />
+      </InputContainer>
+    )}
           <ControlsLayout>
             {props.currentIndex > 0 ? (
               <Button clicked={onPrevButtonHandler}>Previous question</Button>
@@ -143,8 +158,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     onPrevQuestion: () => dispatch(prevQuestion()),
     resetIndex: () => dispatch(resetIndex()),
     resetResults: () => dispatch(resetResults()),
-    setResultAnswer: (data) => dispatch(setAnswer(data)),
-    resetAnswer: (id) => dispatch(removeAnswer(id)),
+    setResultAnswer: (data: QuestionData) => dispatch(setAnswer(data)),
+    resetAnswer: (id: number) => dispatch(removeAnswer(id)),
   };
 };
 

@@ -1,7 +1,12 @@
 import * as actionTypes from "../actions/actionTypes";
+import { AnyAction } from "redux";
+
+export interface QuestionData { questionId: any; answer: string }
+
+export interface ResultData {  [key: string]: string }
 
 export interface State {
-  answersData: { [key: string]: string };
+  answersData: ResultData;
   currentQuestion: number;
 }
 
@@ -10,8 +15,7 @@ const initialState: State = {
   currentQuestion: -1,
 };
 
-const reducer = (state = initialState, action) => {
-  console.log(state);
+const reducer = (state = initialState, action:AnyAction) => {
   switch (action.type) {
     case actionTypes.SET_ANSWER:
       return {

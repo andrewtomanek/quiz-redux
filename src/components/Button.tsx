@@ -1,9 +1,15 @@
 import React from "react";
 
-const Button = (props) => {
+type Props = {
+  disabled?: boolean;
+  clicked: () => void;
+  children: React.ReactNode
+};
+
+const Button = ({disabled,clicked,children}:Props) => {
   return (
-    <button disabled={props.disabled} onClick={props.clicked}>
-      {props.children}
+    <button disabled={disabled} onClick={clicked}>
+      {children}
     </button>
   );
 };
