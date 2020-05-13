@@ -33,10 +33,10 @@ form{
 }
   
   input {
-    padding: 1rem;
-    font-size: 1.2rem;
+    padding: 0.2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
     width: 100%;
-    display: block;
     border-radius: 1rem;
     border: 0.2rem solid #ccc;
     color: var(--blue);

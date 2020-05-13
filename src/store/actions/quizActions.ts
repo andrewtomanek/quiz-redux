@@ -6,6 +6,12 @@ export const setAnswer = (payload) => {
     ...payload,
   };
 };
+export const removeAnswer = (id) => {
+  return {
+    type: actionTypes.DELETE_ANSWER,
+    payload:id,
+  };
+};
 
 export const resetResults = () => {
   return {

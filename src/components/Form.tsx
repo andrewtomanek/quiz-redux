@@ -16,10 +16,20 @@ const ErrorText = styled.p`
 type Props = {
   questionData: any;
   setResultAnswer: (data) => void;
+  removeAnswer: (data) => void;
   enableNext: () => void;
 };
 
-const Form = ({ questionData, setResultAnswer, enableNext }: Props) => {
+const Form = ({
+  questionData,
+  setResultAnswer,
+  removeAnswer,
+  enableNext,
+}: Props) => {
+  const deleteAnswer = () => {
+    removeAnswer(questionData.id);
+  };
+
   return (
     <Formik
       initialValues={{ questionQuery: "" }}
@@ -38,7 +48,7 @@ const Form = ({ questionData, setResultAnswer, enableNext }: Props) => {
         questionQuery: Yup.string()
           .required("Alphanumeric characters required")
           .matches(
-            /^[0-9a-zA-Z]+$/,
+            /^[0-9a-zA-Z ]+$/,
             "Please input alphanumeric characters only"
           ),
       })}
@@ -85,9 +95,18 @@ const Form = ({ questionData, setResultAnswer, enableNext }: Props) => {
               >
                 Reset
               </button>
-              <button type="submit" disabled={isSubmitting}>
-                Submit
+              <button
+                type="button"
+                className="outline"
+                onClick={() => {
+                  deleteAnswer();
+                  handleReset();
+                }}
+                disabled={!dirty}
+              >
+                Delete
               </button>
+              <button type="submit">Submit</button>
             </ControlsLayout>
           </InputForm>
         );

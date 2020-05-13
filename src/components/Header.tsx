@@ -15,7 +15,6 @@ const TextField = styled.p`
   font-weight: 800;
   text-align: center;
   color: var(--blue);
-  background-color: var(--orange);
 `;
 
 const Header = () => {

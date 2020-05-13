@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 export interface State {
-  answersData: {};
+  answersData: { [key: string]: string };
   currentQuestion: number;
 }
 
@@ -21,6 +21,16 @@ const reducer = (state = initialState, action) => {
           [action.questionId]: action.answer,
         },
       };
+    case actionTypes.DELETE_ANSWER:
+      const { [action.payload]: value, ...withoutDeletedAnswer } = {
+        ...state.answersData,
+      };
+      return {
+        ...state,
+        answersData: {
+          ...withoutDeletedAnswer,
+        },
+      };
     case actionTypes.RESET_RESULTS:
       return {
         ...state,
@@ -30,9 +40,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.RESET_INDEX:
       return {
         ...state,
-        currentQuestion: - 1,
+        currentQuestion: -1,
       };
-          case actionTypes.NEXT_QUESTION:
+    case actionTypes.NEXT_QUESTION:
       return {
         ...state,
         currentQuestion: state.currentQuestion + 1,
