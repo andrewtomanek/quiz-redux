@@ -23,7 +23,7 @@ const ErrorSymbol = styled.p`
 `;
 
 type Props = {
-  questionData: any;
+  questionData: QuestionData;
   setResultAnswer: (data: QuestionData) => void;
   removeAnswer: (id: number) => void;
   enableNext: () => void;
@@ -44,8 +44,9 @@ const Form = ({
       initialValues={{ questionQuery: "" }}
       onSubmit={(values) => {
         const data = {
-          questionId: questionData.id,
+          question: questionData.question,
           answer: values.questionQuery,
+          id: questionData.id,
         };
         enableNext();
         setResultAnswer(data);

@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../components/Button";
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 import { ResultData } from "../store/reducers/quizReducer";
 
 const ResultWrap = styled.div`
@@ -43,9 +43,7 @@ const ResultText = styled.p`
   background-color: var(--yellow);
   border-radius: 1rem;
   animation: ${textAnimation} 1500ms ease-in-out;
-
 `;
-
 
 type Props = {
   resultData: ResultData;

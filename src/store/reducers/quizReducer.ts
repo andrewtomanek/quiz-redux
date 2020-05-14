@@ -1,9 +1,15 @@
 import * as actionTypes from "../actions/actionTypes";
 import { AnyAction } from "redux";
 
-export interface QuestionData { questionId: any; answer: string }
+export interface QuestionData {
+  question: string;
+  answer: string;
+  id: number;
+}
 
-export interface ResultData {  [key: string]: string }
+export interface ResultData {
+  [key: string]: string;
+}
 
 export interface State {
   answersData: ResultData;
@@ -15,14 +21,14 @@ const initialState: State = {
   currentQuestion: -1,
 };
 
-const reducer = (state = initialState, action:AnyAction) => {
+const reducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case actionTypes.SET_ANSWER:
       return {
         ...state,
         answersData: {
           ...state.answersData,
-          [action.questionId]: action.answer,
+          [action.id]: action.answer,
         },
       };
     case actionTypes.DELETE_ANSWER:

@@ -91,9 +91,9 @@ const Home = (props: StateProps & DispatchProps) => {
     setIsDisabled(!isDisabled);
   };
 
-  let currentQuestion = null;
+  let currentQuestionData: QuestionData | null | undefined = null;
   if (props.currentIndex !== -1) {
-    currentQuestion = formData.find((item) => {
+    currentQuestionData = formData.find((item) => {
       return item.id === props.currentIndex;
     });
   }
@@ -120,11 +120,11 @@ const Home = (props: StateProps & DispatchProps) => {
       <Header />
       {!isSubmit ? (
         <QuestionBox>
-          {currentQuestion && (
+          {currentQuestionData && (
             <InputContainer>
               <Form
-                key={currentQuestion.id}
-                questionData={currentQuestion}
+                key={currentQuestionData.id}
+                questionData={currentQuestionData}
                 setResultAnswer={setResultAnswer}
                 removeAnswer={removeAnswer}
                 enableNext={enableNext}
