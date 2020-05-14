@@ -11,6 +11,11 @@ const GlobalStyle = createGlobalStyle`
 * {
     box-sizing: border-box;
     font-family: ;
+  }  
+  
+  html {
+    margin: 0;
+    padding: 0;
   }
   
   body {
@@ -18,19 +23,6 @@ const GlobalStyle = createGlobalStyle`
       sans-serif;
     background-color: hsla(60, 80%, 80%, 1);  
   }
-  
-form{
-  display: grid;
-  grid-gap: 0.1rem 0.3rem;
-  grid-auto-flow: row;
-  align-items: center;
-  align-content: space-around;
-  justify-content: center;
-  width:70vw;
-  padding: 1rem 1.2rem;
-  background-color: hsla(40, 70%, 50%, 1);  
-  border-radius: 1rem;
-}
   
   input {
     padding: 0.4rem;

@@ -14,6 +14,14 @@ const ErrorText = styled.p`
   color: var(--red);
 `;
 
+const ErrorSymbol = styled.p`
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 900;
+  text-align: center;
+  color: green;
+`;
+
 type Props = {
   questionData: any;
   setResultAnswer: (data: QuestionData) => void;
@@ -81,8 +89,10 @@ const Form = ({
                   : "text-input"
               }
             />
-            {errors.questionQuery && touched.questionQuery && (
+            {errors.questionQuery && touched.questionQuery ? (
               <ErrorText>{errors.questionQuery}</ErrorText>
+            ) : (
+              <ErrorSymbol>{"\u{2714}"}</ErrorSymbol>
             )}
             <ControlsLayout>
               <button

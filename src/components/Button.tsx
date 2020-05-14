@@ -7,6 +7,8 @@ type Props = {
 };
 
 const Button = ({disabled,clicked,children}:Props) => {
+
+  console.log(children);
   return (
     <button disabled={disabled} onClick={clicked}>
       {children}

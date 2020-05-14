@@ -24,7 +24,7 @@ export const textAnimation = keyframes`
     transform: scale(1) rotate(0deg);
   }
   50% {
-    transform: scale(1.5) rotate(3deg);
+    transform: scale(1.2) rotate(3deg);
     text-shadow: 0 0 0.5em rgba(255, 255, 255, 0.4),
       0 0 0.2em rgba(0, 0, 0, 0.3), 0 0.5em 0.5em rgba(0, 0, 0, 0.3);
   }

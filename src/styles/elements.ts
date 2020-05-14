@@ -9,7 +9,7 @@ export const InputForm = styled.form`
   justify-content: center;
   width:70vw;
   padding: 1rem 1.2rem;
-  background-color: hsla(40, 70%, 50%, 1);  
+  background-color: hsla(40, 70%, 70%, 1);  
   border-radius: 1rem;
 `;
 
