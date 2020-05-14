@@ -3,12 +3,10 @@ import React from "react";
 type Props = {
   disabled?: boolean;
   clicked: () => void;
-  children: React.ReactNode
+  children: React.ReactNode;
 };
 
-const Button = ({disabled,clicked,children}:Props) => {
-
-  console.log(children);
+const Button = ({ disabled, clicked, children }: Props) => {
   return (
     <button disabled={disabled} onClick={clicked}>
       {children}

@@ -9,6 +9,7 @@ React interface that allows the user to build a sentence
 - [Setup](#setup)
 - [Testing](#testing)
 - [Contact](#contact)
+- [License](#license)
 
 ## General info
 
@@ -45,7 +46,7 @@ Run yarn test or watch changes yarn watch
 
 andrewtomanek - andrewtomanek@gmail.com
 
-[https://github.com/andrewtomanek/build-a-sentence-game](https://github.com/andrewtomanek/build-a-sentence-game)
+[https://github.com/andrewtomanek/quiz-redux](https://github.com/andrewtomanek/quiz-redux)
 
 ## License
 
