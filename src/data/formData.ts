@@ -7,22 +7,22 @@ type QuizData = {
 const formData: QuizData = [
   {
     question: "Who?",
-    answer: "Mark",
+    answer: "name",
     id: 0,
   },
   {
     question: "What?",
-    answer: "is coding",
+    answer: "activity",
     id: 1,
   },
   {
     question: "When?",
-    answer: "today",
+    answer: "time",
     id: 2,
   },
   {
     question: "Where?",
-    answer: "on his computer",
+    answer: "location",
     id: 3,
   },
 ];

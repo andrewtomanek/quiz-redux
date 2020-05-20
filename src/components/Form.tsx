@@ -24,6 +24,7 @@ const ErrorSymbol = styled.p`
 
 type Props = {
   questionData: QuestionData;
+  questionAnswer: string | undefined;
   setResultAnswer: (data: QuestionData) => void;
   removeAnswer: (id: number) => void;
   enableNext: () => void;
@@ -31,6 +32,7 @@ type Props = {
 
 const Form = ({
   questionData,
+  questionAnswer,
   setResultAnswer,
   removeAnswer,
   enableNext,
@@ -38,7 +40,6 @@ const Form = ({
   const deleteAnswer = () => {
     removeAnswer(questionData.id);
   };
-
   return (
     <Formik
       initialValues={{ questionQuery: "" }}
@@ -79,7 +80,9 @@ const Form = ({
             </InputLabel>
             <input
               id="questionQuery"
-              placeholder={questionData.answer}
+              placeholder={
+                questionAnswer ? questionAnswer : questionData.answer
+              }
               type="text"
               value={values.questionQuery}
               onChange={handleChange}

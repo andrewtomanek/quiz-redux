@@ -92,9 +92,14 @@ const Home = (props: StateProps & DispatchProps) => {
   };
 
   let currentQuestionData: QuestionData | null | undefined = null;
+  let currentAnswer: string | undefined = "";
+  const resultAnswers = Object.values(props.answersData);
   if (props.currentIndex !== -1) {
     currentQuestionData = formData.find((item) => {
       return item.id === props.currentIndex;
+    });
+    currentAnswer = resultAnswers.find((_item, index) => {
+      return index === props.currentIndex;
     });
   }
 
@@ -125,6 +130,7 @@ const Home = (props: StateProps & DispatchProps) => {
               <Form
                 key={currentQuestionData.id}
                 questionData={currentQuestionData}
+                questionAnswer={currentAnswer}
                 setResultAnswer={setResultAnswer}
                 removeAnswer={removeAnswer}
                 enableNext={enableNext}
