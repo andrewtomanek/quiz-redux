@@ -12,6 +12,7 @@ const props = {
     answer: "Mark",
     id: 0,
   },
+  questionAnswer: "user input",
   setResultAnswer,
   removeAnswer,
   enableNext,
